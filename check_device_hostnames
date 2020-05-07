@@ -1,0 +1,22 @@
+import requests
+import pprint    # pprint to make json output look clean
+url = "https://sandboxdnac.cisco.com/dna/intent/api/v1/network-device"
+
+payload = {}
+
+#x-auth-token fetched through Push with cisco credentials
+headers = {
+  'x-auth-token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiI1ZTlkYmI3NzdjZDQ3ZTAwNGM2N2RkMGUiLCJhdXRoU291cmNlIjoiaW50ZXJuYWwiLCJ0ZW5hbnROYW1lIjoiVE5UMCIsInJvbGVzIjpbIjVkYzQ0NGQ1MTQ4NWM1MDA0YzBmYjIxMiJdLCJ0ZW5hbnRJZCI6IjVkYzQ0NGQzMTQ4NWM1MDA0YzBmYjIwYiIsImV4cCI6MTU4ODg4NzgyOCwiaWF0IjoxNTg4ODg0MjI4LCJqdGkiOiI2ZmQ1MTNlYy1hODcxLTRiOGQtOWE4ZS02Y2VmYTIxMjBlOTciLCJ1c2VybmFtZSI6ImRldm5ldHVzZXIifQ.Ccf5m4djaaxias7VgjTZn-4W7gY8-etbz2sHGtL5bFb_fSuQyiG3uJ1Gb0-qX6gYDgsKwxDwNJQvzYi45rgaKvGjmGOpuOXnRRwdWp-sMa8-FWDsdJGidjDTVg30oGKZrGERKn6NrYQ_jHk3dJGXhXYnWOiLItbiWtphgL7ncnNR9g6vHBcX3q6iDXqNLmi81NXAe0EiWcjbLKsEAv-3pg6vRCeuk1i-1dPy4VFv4y4XBLLkMjyflUgq-uiWwHBeLlDpSMfGtuo3AMGkec2N2wgQ6k0xUXJEcJUiklNTuBYIR_S1n_NRzenhlc_SSPWOaU3PgupEDWQCZhUt6vLJxA'
+}
+
+response = requests.request("GET", url, headers=headers, data = payload)
+
+abc = response.json()
+
+count = len(abc["response"])
+print(f'total count is: {count}')
+hostname = []
+for i in range(count):
+  a = abc["response"][i]["hostname"]
+  hostname.append(a)
+print("hostame are:", ", ".join(hostname))
