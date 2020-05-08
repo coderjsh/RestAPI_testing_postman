@@ -1,0 +1,16 @@
+import requests
+
+url = "https://sandboxdnac.cisco.com/dna/intent/api/v1/network-device/1cfd383a-7265-47fb-96b3-f069191a0ed5/config"
+
+payload = {}
+headers = {
+  'x-auth-token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiI1ZTlkYmI3NzdjZDQ3ZTAwNGM2N2RkMGUiLCJhdXRoU291cmNlIjoiaW50ZXJuYWwiLCJ0ZW5hbnROYW1lIjoiVE5UMCIsInJvbGVzIjpbIjVkYzQ0NGQ1MTQ4NWM1MDA0YzBmYjIxMiJdLCJ0ZW5hbnRJZCI6IjVkYzQ0NGQzMTQ4NWM1MDA0YzBmYjIwYiIsImV4cCI6MTU4ODkxODM2NywiaWF0IjoxNTg4OTE0NzY3LCJqdGkiOiJjZDRiNDdmNC02YTI1LTQxMWItOTMzNy1jNmRlNzc2MTM0NzEiLCJ1c2VybmFtZSI6ImRldm5ldHVzZXIifQ.Mku7SyqNsbAMOlkUH0h0W5coIlrh5IU14yoLmzAg_0WIXAs2-udnemYVX6C9cy4cTaSM1MM5LDLGb0xzQn7gya2NDEy6p6uEpy4H2bAwHhiTVlh7XL7oke_G60rTs_YblADZ08tHI-0f8mBoB60pJ9aC7ecaL8-X9ON1O0On7qHR8Lx2lD6TXd_fFgFTcQ_mj79C-UDa4czmh1IyZujL1pHndnjuZiLNC_n-ORStzaGYMPY9KFSP62Lp2mByO0qy9MSpcMZZr_8O3GiO52UBXG2F4glVcEZ4-vhYRTrlJp134pkI-AYHtu9YV-wqEdl6rEW58f-_HY-sVIcK6wd2gg',
+  'Authorization': 'Basic ZGV2bmV0dXNlcjpDaXNjbzEyMyE=',
+  'Cookie': 'JSESSIONID=110eauy5ac0481r8rhkw4p7iw3'
+}
+
+response = requests.request("GET", url, headers=headers, data = payload)
+
+running_config = response.json()["response"]
+print("ASR config below: \n")
+print(running_config, flush=True)
